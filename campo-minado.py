@@ -56,11 +56,11 @@ def exibir_tabuleiro(tabuleiro):
         print(linha)
 
 def menu_de_dificuldade():
-    print(' CAMPO MINADO ')
-    print(' 1) 9x9: facil ')
-    print(' 2) 12x12: medio ')
-    print(' 3) 12x12: dificil ')
-    nivel = (input('qual o nivel você quer jogar? (1, 2 ou 3): '))
+    print(' CAMPO MINADO '),
+    print(' 1) 9x9: facil  10 bombas')
+    print(' 2) 12x12: medio 25 bombas')
+    print(' 3) 12x12: dificil 40 bombas')
+    nivel = int(input('qual o nivel você quer jogar? (1, 2 ou 3): '))
 
     if nivel == 1:
         return tabuleiro_facil()
