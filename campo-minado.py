@@ -46,3 +46,21 @@ def tabuleiro_dificil():
         ['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?'],
         ['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']
     ]
+
+def menu_de_dificuldade():
+    print(' CAMPO MINADO ')
+    print(' 1) 9x9: facil ')
+    print(' 2) 12x12: medio ')
+    print(' 3) 12x12: dificil ')
+    nivel = (input('qual o nivel você quer jogar? (1, 2 ou 3): '))
+
+    if nivel == 1:
+        return tabuleiro_facil()
+    elif nivel == 2:
+        return tabuleiro_medio()
+    elif nivel == 3:
+        return tabuleiro_dificil()
+    else:
+        print('o numero é invalido, selecione novamente o nivel de 1 a 3')
+        return menu_de_dificuldade()
+
