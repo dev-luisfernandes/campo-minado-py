@@ -1,3 +1,51 @@
+def mostrar_menu():
+    while True:
+        print("================================")
+        print("          🐇 A FLORESTA")
+        print("================================")
+        print()
+        print("Você é um pequeno coelho")
+        print("perdido na floresta.")
+        print()
+        print("Existem várias tocas espalhadas")
+        print("pelo território.")
+        print()
+        print("Mas os lobos estão por perto...")
+        print()
+        print("Encontre uma toca segura.")
+        print("================================")
+        print()
+        print("1 - Começar jogo")
+        print("2 - Como jogar")
+        print("3 - Sair")
+
+        opcao = input("\nEscolha uma opção: ")
+
+        if opcao in ["1", "2", "3"]:
+            return opcao
+
+        print("\n⚠️ Opção inválida! Tente novamente.\n")
+
+
+
+def main():
+    while True:
+        opcao = mostrar_menu()
+
+        if opcao == "1":
+            iniciar_jogo() #diogo
+
+        elif opcao == "2":
+            mostrar_como_jogar()  # larissa
+
+        elif opcao == "3":
+            print("\nAté a próxima, coelhinho! 🐇\n")
+            break
+
+
+
+main()
+
 def tabuleiro_facil():
     return [
         ['?', '?', '?', '?', '?', '?', '?', '?', '?'],
