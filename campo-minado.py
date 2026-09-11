@@ -1,4 +1,5 @@
 import random
+import sys
 
 
 TAMANHO = 10
@@ -9,12 +10,6 @@ ESCONDIDO = "🌲"
 TOCA = "🕳️"
 LOBO = "L"
 LOBO_VISIVEL = "🐺"
-
-SIMBOLOS_TABULEIRO = {
-    ESCONDIDO: "?",
-    TOCA: ".",
-    LOBO_VISIVEL: "L",
-}
 
 
 def mostrar_menu():
@@ -37,9 +32,9 @@ def mostrar_como_jogar():
     print("Você é um coelho perdido")
     print("em uma floresta cheia de lobos.")
     print()
-    print(f"{SIMBOLOS_TABULEIRO[ESCONDIDO]} = Área não explorada")
-    print(f"{SIMBOLOS_TABULEIRO[TOCA]} = Toca segura")
-    print(f"{SIMBOLOS_TABULEIRO[LOBO_VISIVEL]} = Lobo encontrado")
+    print(f"{ESCONDIDO} = Área não explorada")
+    print(f"{TOCA} = Toca segura")
+    print(f"{LOBO_VISIVEL} = Lobo encontrado")
     print("1-8 = Quantidade de lobos próximos")
     print()
     print("Ao encontrar uma área sem lobos")
@@ -115,9 +110,20 @@ def calcular_lobos_vizinhos(mapa):
                 mapa[linha][coluna] = contador
 
 
+def largura_visual(texto):
+    
+    for figura in (ESCONDIDO, TOCA, LOBO_VISIVEL):
+        if figura == TOCA:
+            texto = texto.replace(figura, " ")
+        else:
+            texto = texto.replace(figura, "  ")
+
+    return len(texto)
+
+
 def centralizar_texto(texto, largura):
     texto = str(texto)
-    espacos = largura - len(texto)
+    espacos = largura - largura_visual(texto)
     esquerda = espacos // 2
     direita = espacos - esquerda
 
@@ -125,7 +131,7 @@ def centralizar_texto(texto, largura):
 
 
 def mostrar_floresta(floresta):
-    # Símbolos de largura fixa evitam desalinhamento dos emojis no terminal.
+    
     largura_celula = max(2, len(str(TAMANHO))) + 2
     largura_indice = max(3, len(str(TAMANHO)))
     margem = " " * (largura_indice + 2)
@@ -133,7 +139,7 @@ def mostrar_floresta(floresta):
     segmento = "─" * largura_celula
 
     print("\n")
-    print(margem + centralizar_texto("A FLORESTA", largura_grade))
+    print(margem + centralizar_texto("🌲 A FLORESTA 🌲", largura_grade))
     print()
 
     cabecalho = " ".join(
@@ -145,12 +151,7 @@ def mostrar_floresta(floresta):
 
     for linha in range(TAMANHO):
         celulas = "│".join(
-            centralizar_texto(
-                SIMBOLOS_TABULEIRO.get(
-                    floresta[linha][coluna], floresta[linha][coluna]
-                ),
-                largura_celula,
-            )
+            centralizar_texto(floresta[linha][coluna], largura_celula)
             for coluna in range(TAMANHO)
         )
         print(f"{linha + 1:>{largura_indice}}  │{celulas}│")
@@ -161,9 +162,9 @@ def mostrar_floresta(floresta):
     print(margem + "└" + "┴".join([segmento] * TAMANHO) + "┘")
 
     print()
-    print(f"{margem}{SIMBOLOS_TABULEIRO[ESCONDIDO]} = Área não explorada")
-    print(f"{margem}{SIMBOLOS_TABULEIRO[TOCA]} = Toca segura")
-    print(f"{margem}{SIMBOLOS_TABULEIRO[LOBO_VISIVEL]} = Lobo")
+    print(f"{margem}{ESCONDIDO} = Área não explorada")
+    print(f"{margem}{TOCA} = Toca segura")
+    print(f"{margem}{LOBO_VISIVEL} = Lobo")
     print(f"{margem}1-8 = Lobos próximos")
     print()
 
@@ -400,3 +401,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
