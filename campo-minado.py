@@ -113,7 +113,10 @@ def calcular_lobos_vizinhos(mapa):
 def largura_visual(texto):
     
     for figura in (ESCONDIDO, TOCA, LOBO_VISIVEL):
-        texto = texto.replace(figura, "  ")
+        if figura == TOCA:
+            texto = texto.replace(figura, " ")
+        else:
+            texto = texto.replace(figura, "  ")
 
     return len(texto)
 
